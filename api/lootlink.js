@@ -7,5 +7,6 @@ export default function handler(req, res) {
   }
 
   // veio certinho → manda pro getkey
-  return res.redirect(`/api/getkey?data=${data}`);
+return res.redirect
+  (`https://TEU-PROJETO.vercel.app/api/getkey?data=${data}`);
 }
