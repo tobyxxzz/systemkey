@@ -2,7 +2,7 @@ export default function handler(req, res) {
   const cookies = req.headers.cookie || "";
 
   if (!cookies.includes("passed=true")) {
-    return res.redirect("https://lootlabs.gg/s/rokoJQbL");
+    return res.redirect("https://lootdest.org/s?rokoJQbL");
   }
 
   const ip =
