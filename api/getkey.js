@@ -1,12 +1,12 @@
 export default function handler(req, res) {
   const { data } = req.query;
 
-  // 🚫 entrou direto, sem passar pelo LootLabs
   if (!data) {
-    return res.redirect(
-      "https://lootdest.org/s?rokoJQbL"
-    ); // teu locker normal
+    return res.redirect("https://lootlabs.gg/s/rokoJQbL");
   }
+
+  res.status(200).send("KEY AQUI");
+}
 
   const ip =
     req.headers["x-forwarded-for"]?.split(",")[0] ||
