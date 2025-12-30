@@ -1,34 +1,45 @@
 export default async function handler(req, res) {
-  const key = process.env.LOOTLABS_API_KEY;
+  const API_KEY = process.env.LOOTLABS_API_KEY;
 
-  if (!key) {
+  if (!API_KEY) {
     return res.status(500).json({ error: "API key ausente" });
   }
 
   const destinationUrl = "https://systemkey.vercel.app/api/getkey";
+  const LOOT_LINK_ID = "s?Ij0c7qhE"; // teu locker ID
 
   try {
     const response = await fetch(
-      "https://api.lootlabs.gg/v1/redirect/encrypt",
+      "https://api.lootlabs.gg/v1/redirect",
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${key}`,
+          Authorization: `Bearer ${API_KEY}`,
         },
-        body: JSON.stringify({ url: destinationUrl }),
+        body: JSON.stringify({
+          destination: destinationUrl,
+        }),
       }
     );
 
-    const text = await response.text();
+    const json = await response.json();
 
-    return res.status(200).json({
-      status: response.status,
-      lootlabsResponse: text,
-    });
+    if (!json.data) {
+      return res.status(500).json({
+        error: "Resposta inválida da LootLabs",
+        raw: json,
+      });
+    }
+
+    const finalUrl = `https://lootlabs.gg/s/${LOOT_LINK_ID}?data=${encodeURIComponent(
+      json.data
+    )}`;
+
+    res.json({ url: finalUrl });
   } catch (err) {
-    return res.status(500).json({
-      error: "Fetch crash",
+    res.status(500).json({
+      error: "Erro ao conectar com LootLabs",
       message: err.message,
     });
   }
