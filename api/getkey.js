@@ -74,14 +74,14 @@ export default function handler(req, res) {
 </head>
 <body>
   <div class="card">
-    <h1>🔑 Sua key diária</h1>
+    <h1>Sua key diária</h1>
 
     <div class="key-box" id="key">${key}</div>
 
     <button onclick="copyKey()">Copiar key</button>
 
     <div class="info">
-      ⏰ Válida por 24 horas<br>
+      Válida por 24 horas<br>
       Volte amanhã para gerar outra
     </div>
   </div>
@@ -90,7 +90,7 @@ export default function handler(req, res) {
     function copyKey() {
       const text = document.getElementById("key").innerText;
       navigator.clipboard.writeText(text).then(() => {
-        alert("Key copiada 😎");
+        alert("Key copiada");
       });
     }
   </script>
