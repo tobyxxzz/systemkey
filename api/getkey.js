@@ -1,11 +1,16 @@
 export default function handler(req, res) {
+  const cookies = req.headers.cookie || "";
+
+  if (!cookies.includes("passed=true")) {
+    return res.redirect("https://lootlabs.gg/s/rokoJQbL");
+  }
+
   const ip =
     req.headers["x-forwarded-for"]?.split(",")[0] ||
     req.socket.remoteAddress;
 
   const today = new Date().toISOString().slice(0, 10);
   const SAL = "ZENITH";
-
   const raw = ip + today + SAL;
   const key = Buffer.from(raw).toString("base64");
 
