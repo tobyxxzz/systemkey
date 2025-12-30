@@ -2,7 +2,7 @@ export default function handler(req, res) {
   const { key } = req.query;
 
   if (!key) {
-    return res.json({ valid: false });
+    return res.status(400).json({ valid: false });
   }
 
   const ip =
@@ -10,8 +10,10 @@ export default function handler(req, res) {
     req.socket.remoteAddress;
 
   const today = new Date().toISOString().slice(0, 10);
-  const raw = ip + today + "ZENITH";
-  const validKey = Buffer.from(raw).toString("base64");
+  const SAL = "ZENITH";
+  const expected = Buffer.from(ip + today + SAL).toString("base64");
 
-  res.json({ valid: key === validKey });
+  res.status(200).json({
+    valid: key === expected
+  });
 }
