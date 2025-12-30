@@ -4,7 +4,7 @@ export default function handler(req, res) {
   // 🚫 entrou direto, sem passar pelo LootLabs
   if (!data) {
     return res.redirect(
-      "https://lootdest.org/s?Ij0c7qhE"
+      "https://lootdest.org/s?PHUYGGsM"
     ); // teu locker normal
   }
 
