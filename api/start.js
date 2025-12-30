@@ -1,12 +1,19 @@
 export default function handler(req, res) {
-  const random = Math.random().toString(36).slice(2);
-  const timestamp = Date.now();
+  try {
+    const random = Math.random().toString(36).slice(2);
+    const timestamp = Date.now();
 
-  const data = Buffer.from(random + ":" + timestamp).toString("base64");
+    const data = Buffer.from(random + ":" + timestamp).toString("base64");
 
-  const lootLink =
-    "https://lootdest.org/s?rokoJQbL&data=" +
-    encodeURIComponent(data);
+    const lootLink =
+      "https://lootdest.org/s?rokoJQbL&data=" +
+      encodeURIComponent(data);
 
-  res.redirect(lootLink);
+    res.writeHead(302, {
+      Location: lootLink,
+    });
+    res.end();
+  } catch (err) {
+    res.status(500).send("erro interno: " + err.message);
+  }
 }
