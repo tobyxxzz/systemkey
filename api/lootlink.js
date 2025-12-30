@@ -3,7 +3,7 @@ export default function handler(req, res) {
 
   // se não veio do lootlabs, volta pro locker
   if (!data) {
-    return res.redirect("https://lootlabs.gg/s/PHUYGGsM");
+    return res.redirect("https://lootlabs.gg/s/rokoJQbL");
   }
 
   // veio certinho → manda pro getkey
