@@ -6,7 +6,7 @@ export default async function handler(req, res) {
   }
 
   const destinationUrl = "https://systemkey.vercel.app/api/getkey";
-  const LOOT_LINK_ID = "s?Ij0c7qhE"; // teu locker ID
+  const LOOT_LINK_ID = "s?PHUYGGsM"; // teu locker ID
 
   try {
     const response = await fetch(
